@@ -8,7 +8,7 @@ const simulateClickOnElement = (
       bubbles: true,
       cancelable: true,
     });
-    const element = document.querySelector(elementSelector);
+    const element = document.querySelector<HTMLDivElement>(elementSelector);
     if (element) {
       element.dispatchEvent(event);
       return resolve();
@@ -20,7 +20,7 @@ const simulateClickOnElement = (
 };
 
 const ADD_NOTE_CONTENT: string =
-  "Hi Cameron, I'm Ihor from Periodix\n" + "Connect?\n";
+  "Hi Cameron, I'm Ihor from Periodix\n" + "Connect?";
 const addNote = (noteContent: string): Promise<void | string> => {
   return new Promise<void | string>((resolve, reject) => {
     const noteElem =
@@ -35,21 +35,36 @@ const addNote = (noteContent: string): Promise<void | string> => {
   });
 };
 
-delay(10000)
-  .then(() =>
-    simulateClickOnElement(
-      "button.artdeco-dropdown__trigger.artdeco-dropdown__trigger--placement-bottom.ember-view.pvs-profile-actions__action.artdeco-button.artdeco-button--secondary.artdeco-button--muted.artdeco-button--1"
-    )
-  )
-  .then(() => delay(2000))
+// delay(5000)
+//   .then(() =>
+//     simulateClickOnElement(
+//       "button.artdeco-dropdown__trigger.artdeco-dropdown__trigger--placement-bottom.ember-view.pvs-profile-actions__action.artdeco-button.artdeco-button--secondary.artdeco-button--muted.artdeco-button--1"
+//     )
+//   )
+//   .then(() =>
+//     simulateClickOnElement(
+//       "div.artdeco-dropdown__content-inner > ul > li:nth-child(3) > div"
+//     )
+//   )
+//   .then(() => delay(1500))
+//   .then(() => simulateClickOnElement('[aria-label="Add a note"]'))
+//   .then(() => delay(5000))
+//   .then(() => addNote(ADD_NOTE_CONTENT))
+//   // .then(() => simulateClickOnElement('[aria-label="Send now"]'))
+//   .catch((error) => {
+//     console.log(error);
+//   });
+
+delay(2000)
+  // .then(() => simulateClickOnElement('div.pvs-profile-actions button.artdeco-dropdown__trigger.artdeco-dropdown__trigger--placement-bottom.ember-view.pvs-profile-actions__action.artdeco-button.artdeco-button--secondary.artdeco-button--muted.artdeco-button--1'))
   .then(() =>
     simulateClickOnElement(
       "div.artdeco-dropdown__content-inner > ul > li:nth-child(3) > div"
     )
   )
-  .then(() => delay(1500))
-  .then(() => simulateClickOnElement('[aria-label="Add a note"]'))
-  .then(() => delay(5000))
+  .then(() => delay(1000))
+  .then(() => simulateClickOnElement('button.artdeco-button.artdeco-button--muted.artdeco-button--2.artdeco-button--secondary.ember-view.mr1'))
+  .then(() => delay(1000))
   .then(() => addNote(ADD_NOTE_CONTENT))
   // .then(() => simulateClickOnElement('[aria-label="Send now"]'))
   .catch((error) => {

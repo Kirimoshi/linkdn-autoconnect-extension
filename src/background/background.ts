@@ -10,16 +10,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   //     runAt: "document_start",
   //   },
   // ]);
-  chrome.tabs
-    .query({
-      active: true,
-      currentWindow: true,
-    })
-    // .then((tabs) => {
-    //   chrome.scripting.executeScript({
-    //     target: { tabId: tabs[0].id },
-    //     files: ["contentScript.js"],
-    //   });
-    // })
-    .then(() => console.log("Script injected"));
+  // chrome.tabs
+  //   .query({
+  //     active: true,
+  //     currentWindow: true,
+  //   })
+  // .then((tabs) => {
+  //   chrome.scripting.executeScript({
+  //     target: { tabId: tabs[0].id },
+  //     files: ["contentScript.js"],
+  //   });
+  // })
+  // .then(() => console.log("Script injected"));
 });
