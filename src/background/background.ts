@@ -20,6 +20,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         target: { tabId: tabs[0].id },
         files: ["contentScript.js"],
       });
-      console.log("Script injected");
-    });
+    })
+    .then(() => console.log("Script injected"));
 });
