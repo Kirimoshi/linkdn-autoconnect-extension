@@ -13,20 +13,21 @@ const simulateClickOnElement = (
       element.dispatchEvent(event);
       return resolve();
     } else {
-      return reject("No element found by given selector");
+      return reject(`No element found by given selector ${elementSelector}`);
     }
   };
   return new Promise<void | string>(executorFn);
 };
 
 const ADD_NOTE_CONTENT: string =
-  "Hi Cameron, I'm ........ from ......\n" + "Connect?\n";
+  "Hi Cameron, I'm Ihor from Periodix\n" + "Connect?\n";
 const addNote = (noteContent: string): Promise<void | string> => {
   return new Promise<void | string>((resolve, reject) => {
     const noteElem =
       document.querySelector<HTMLTextAreaElement>("#custom-message");
     if (noteElem) {
       noteElem.value = noteContent;
+      noteElem.dispatchEvent(new InputEvent("change"));
       return resolve();
     } else {
       return reject(`No note element is found by given id`);
@@ -34,7 +35,7 @@ const addNote = (noteContent: string): Promise<void | string> => {
   });
 };
 
-delay(5000)
+delay(10000)
   .then(() =>
     simulateClickOnElement(
       "button.artdeco-dropdown__trigger.artdeco-dropdown__trigger--placement-bottom.ember-view.pvs-profile-actions__action.artdeco-button.artdeco-button--secondary.artdeco-button--muted.artdeco-button--1"
@@ -48,7 +49,8 @@ delay(5000)
   )
   .then(() => delay(1500))
   .then(() => simulateClickOnElement('[aria-label="Add a note"]'))
-  // .then(() => addNote(ADD_NOTE_CONTENT))
+  .then(() => delay(5000))
+  .then(() => addNote(ADD_NOTE_CONTENT))
   // .then(() => simulateClickOnElement('[aria-label="Send now"]'))
   .catch((error) => {
     console.log(error);
