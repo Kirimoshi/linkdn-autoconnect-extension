@@ -1,13 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./popup.css";
-
-// interface AppProps {
-//     url: string,
-// }
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  Container,
+  Grid,
+  Typography,
+} from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
 const App: React.FC = () => {
-  const url = "https://www.linkedin.com/in/cameronpercy/";
+  const url: string = "https://www.linkedin.com/in/cameronpercy/";
   const createTab = (url) => {
     return new Promise((resolve, reject) => {
       chrome.tabs.create({ url }, (tab) => {
@@ -23,18 +30,34 @@ const App: React.FC = () => {
     createTab(url).then(() => {
       chrome.runtime.sendMessage("LinkedIn User Profile is opened");
     });
-    // .then((tab: chrome.tabs.Tab) => {
-    //   chrome.tabs.sendMessage(tab.id, `LinkedIn User Profile is opened`);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
   };
 
   return (
     <>
-      <h1>Click the GO! button to start AutoConnection</h1>
-      <button onClick={handleClick}>GO!</button>
+      <Box mx={1} my={2}>
+        <Card>
+          <Grid container justifyContent={"center"}>
+            <CardContent>
+              <Grid justifyContent={"center"}>
+                <Typography variant={"h6"}>
+                  Click "Send request" button to start
+                </Typography>
+              </Grid>
+            </CardContent>
+            <Grid item justifyContent={"center"}>
+              <CardActions>
+                <Button
+                  variant="contained"
+                  endIcon={<SendIcon />}
+                  onClick={handleClick}
+                >
+                  Send request
+                </Button>
+              </CardActions>
+            </Grid>
+          </Grid>
+        </Card>
+      </Box>
     </>
   );
 };
