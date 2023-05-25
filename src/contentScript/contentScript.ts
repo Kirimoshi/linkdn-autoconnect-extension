@@ -63,7 +63,7 @@ delay(2000)
   .catch((error) => console.log(error))
   .then(() => delay(1000))
   // "Send" button click
-  // .then(() => simulateClickOnElement(SEND_BUTTON_SELECTOR))
+  .then(() => simulateClickOnElement(SEND_BUTTON_SELECTOR))
   .catch((error) => console.log(error))
   .then(() => console.log("Connection request successfully sent"))
   .finally(() => console.log("SCRIPT END"));
